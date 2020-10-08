@@ -25,8 +25,9 @@ public class Ex02 {
 				}
 			}
 		}
+		
 		for (int i = 0; i < vetor.length; i++) {
-			System.out.printf("%d ", vetor[i]);
+			System.out.printf(" %d ", vetor[i]);
 		} 
 		
 	}
