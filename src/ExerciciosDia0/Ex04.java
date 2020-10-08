@@ -1,8 +1,8 @@
-package exerciciosDia1;
+package ExerciciosDia0;
 
 import java.lang.*;
 import java.util.Scanner;
-public class exe04 {
+public class Ex04 {
 	public static void main(String[] args) {
 		double numero[] = new double[4];
 		Scanner ler = new Scanner(System.in);

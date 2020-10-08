@@ -1,7 +1,7 @@
-package exerciciosDia1;
+package ExerciciosDia0;
 
 import java.util.Scanner;
-public class ex03 {
+public class Ex03 {
 	public static void main(String[] args) {
 		int tempoSegundos, hora, minuto, segundo;
 		System.out.println("Insira o tempo de duração em segundos: ");

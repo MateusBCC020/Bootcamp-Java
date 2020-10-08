@@ -1,7 +1,7 @@
-package exerciciosDia1;
+package ExerciciosDia0;
 
 import java.util.Scanner;
-public class ex01 {
+public class Ex01 {
 	public static void main(String[] args) {
 		int idadeAnos, idadeMeses, idadeDias, idadeFinal;
 		System.out.println("Digite sua idade em anos: ");
