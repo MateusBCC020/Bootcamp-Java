@@ -5,45 +5,47 @@ import java.util.Scanner;
 
 public class Caça_ao_Tesouro {
 	
-	/*Essa função recebe a posição que o usuário quer jogar e verifica se é a posição em que o tesouro está.
-	 * Caso seja, marca a posicao com o caracter 'O', caso contrário, marca a posição jogada com o caracter
-	 * 'X' indicando que o usuário errou
-	 * */
-	public static char[] jogada(int posicao, char[] tabuleiro, int posicaoTesouro) {
-		if(posicao > tabuleiro.length || posicao < 0) {
-			System.out.println("Opa! Essa posicao não existe. Escolha uma nova");
-			return tabuleiro;
-		}
-		
-		if (tabuleiro[posicao] != '-') {
-			System.out.println("Opa! Você já escolheu essa posição. Escolha uma nova");
-			return tabuleiro;
-		}
-		
-		if(posicao == posicaoTesouro) {
-			tabuleiro[posicao] = 'O';
-		}
-		else {
-			tabuleiro[posicao] = 'X';
-		}
-		return tabuleiro;
-	}
-	
-	
-	//Essa função recebe o tabuleiro e imprime na tela
-	public static void imprimeTabuleiro(char[] tabuleiro, int tamanho) {
-		for (int i = 0; i < tamanho; i++) {
+	public static void imprimeTabuleiro(char tabuleiro[]) {
+		for(int i = 0; i < tabuleiro.length; i++) {
 			System.out.printf("[%c]", tabuleiro[i]);
-		}
-		System.out.println("\n");
+		}	
+		System.out.println();
 	}
 	
+	public static char[] jogada(int posicaoJogada, int posicaoTesouro, char tabuleiro[]) {
+		if(posicaoJogada > 10 || posicaoJogada < 1) {
+			System.out.println("");
+			return tabuleiro;
+		}
+		
+		if(tabuleiro[posicaoJogada] != '-') {
+			System.out.println("Opa! Essa posição já foi jogada. Escolha uma nova");
+			return tabuleiro;
+		}
+		
+		if(posicaoJogada == (posicaoTesouro)+1) {
+			tabuleiro[posicaoJogada-1] = 'O';
+			return tabuleiro;
+		}else {
+			tabuleiro[posicaoJogada-1] = 'X';
+			return tabuleiro;
+		}	
+	}
 	
-	//Essa função verifica se o caracter 'O' existe no tabuleiro,
-	//caso exista, ela retorna a variável vitória com o valor true.
-	public static boolean verificaTabuleiro(char[] tabuleiro, int tamanho) {
+	public static void avisoMantimentos(int numeroTentativas, char tabuleiro[]) {
+		if(verificaTabuleiro(tabuleiro) == true) {
+			return;
+		}	
+		if(numeroTentativas == 1) {
+			System.out.println("Maldição! demos com os burros n'água...");
+		}else if(numeroTentativas == 2) {
+			System.out.println("Cuidado com a próxima escolha, seus mantimentos estão acabando");
+		}
+	}
+	
+	public static boolean verificaTabuleiro(char tabuleiro[]) {
 		boolean vitoria = false;
-		for (int i = 0; i < tamanho; i++) {
+		for (int i = 0; i < tabuleiro.length; i++) {
 			if(tabuleiro[i] == 'O') {
 				vitoria = true;
 			}
@@ -52,42 +54,69 @@ public class Caça_ao_Tesouro {
 	}
 	
 	
+	
+	public static void limpa() {
+		for (int i = 0; i < 2; i++) {
+			System.out.println();
+		}
+	}
+	
 	public static void main(String[] args) {
-		//O vetor de char será o tabuleiro do joguinho
-		char vetor[] = new char[10];
+		
+		//Vetor é uma fileira de variáveis do mesmo tipo
+		//[1][-4][0][2][1]
+		
+		// Ctrl + espaço = Auto complete
+		
+		/*Criar um joguinho de caça ao tesouro em que o tesouro
+		 *Esteja escondido em uma posição aleatória do nosso tabuleiro
+		 *e que o jogador tenha 3 tentativas para descobrir onde está o tesouro
+		*/
+		
+		char tabuleiro[] = new char[10];	
 		Scanner ler = new Scanner(System.in);
-		int posicao;
+		int posicaoJogada;
 		
-		//Esse trecho serve para sortear a posição em que o tesouro vai estar no tabuleiro
-		Random aleatorio = new Random();
-		int posicaoTesouro = aleatorio.nextInt(10);
-		//System.out.println(posicaoTesouro);
-		
-		//Esse laço preenche o tabuleiro com o caracter hífem.
-		for (int i = 0; i < vetor.length; i++) {
-			vetor[i] = '-';
+		for(int i = 0; i < tabuleiro.length; i++) {
+			tabuleiro[i] = '-';
 		}
 		
-		boolean vitoria;
+		Random aleatorio = new Random();
+		int posicaoTesouro;
+		posicaoTesouro = aleatorio.nextInt(10);
+		//System.out.println(posicaoTesouro);
 		int numero_de_jogadas = 0;
+		boolean vitoria = false;
 		
-		//Esse laço repete o jogo enquanto o número de jogadas for menor que
-		//e enquanto o jogador não acertar a posição do tesouro.
+		//Instruções
+		System.out.println("INSTRUÇÕES:");
+		System.out.println("Reza a lenda que em uma das 10 ilhas do Arquipélago das Tormentas está escondido o tesouro de Barba Negra.");
+		System.out.println("Todos os piratas que foram em busca dessas riquezas, encontraram o castigo do mar");
+		System.out.println("Você é o capitão da tripulação mais corajosa dos sete mares e decide sair à procura do tesouro");
+		System.out.println("Seu objetivo é procurar o tesouro nas ilhas. Mas cuidado!");
+		System.out.println("Seus mantimentos serão suficientes para apenas três tentativas. Escolha sabiamente...");
+		
+		limpa();
+		
 		do {
-			imprimeTabuleiro(vetor, vetor.length);
-			System.out.println("Digite a posição que deseja jogar: ");
-			posicao = ler.nextInt();
-			jogada(posicao, vetor, posicaoTesouro);
-			vitoria = verificaTabuleiro(vetor, vetor.length);
+			imprimeTabuleiro(tabuleiro);
+			System.out.printf("Escolha a ilha que deseja explorar: ");
+			posicaoJogada = ler.nextInt();
+			jogada(posicaoJogada, posicaoTesouro, tabuleiro);
+			vitoria = verificaTabuleiro(tabuleiro);	
 			numero_de_jogadas++;
-		} while (vitoria != true && numero_de_jogadas < 3);
-		
-		imprimeTabuleiro(vetor, vetor.length);
+			System.out.println();
+			avisoMantimentos(numero_de_jogadas, tabuleiro);
+			limpa();
+		} while (numero_de_jogadas < 3 && vitoria == false);
 		
 		if(vitoria == true) {
-			System.out.println("Você ganhou! Você é o rei dos piratas");
+			imprimeTabuleiro(tabuleiro);
+			System.out.printf("Você encontrou o tesouro! Seu nome estará para sempre na história dos piratas");
 		}else {
-			System.out.println("Você perdeu! Saquearam seu tesouro");
+			imprimeTabuleiro(tabuleiro);
+			System.out.println("Famintas e derrotadas, as almas de sua tripulação agora agonizam eternamente no armário de Davy Jones");
 		}
+		System.out.println("\nFim de jogo!");		
 	}
 }
