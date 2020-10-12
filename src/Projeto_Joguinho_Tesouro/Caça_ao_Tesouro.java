@@ -63,7 +63,8 @@ public class Caça_ao_Tesouro {
 		int posicaoTesouro = aleatorio.nextInt(10);
 		//System.out.println(posicaoTesouro);
 		
-		//Esse laço preenche o tabuleiro com o caracter hífem
+		//Esse laço preenche o tabuleiro com o caracter hífem. As posições em que o caracter
+		//hífem estiver presente são as posições que ainda não foram jogadas.
 		for (int i = 0; i < vetor.length; i++) {
 			vetor[i] = '-';
 		}
