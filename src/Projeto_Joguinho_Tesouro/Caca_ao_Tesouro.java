@@ -3,7 +3,7 @@ package Projeto_Joguinho_Tesouro;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Caça_ao_Tesouro {
+public class Caca_ao_Tesouro {
 	
 	public static void imprimeTabuleiro(char tabuleiro[]) {
 		//Esse laço percorre o tabuleiro todo imprimindo (entre os colchetes) o conteúdo
@@ -14,19 +14,26 @@ public class Caça_ao_Tesouro {
 		System.out.println();
 	}
 	
-	public static char[] jogada(int posicaoJogada, int posicaoTesouro, char tabuleiro[]) {
+	public static boolean verificaJogadaInvalida(int posicaoJogada, char tabuleiro[]) {
+		boolean jogadaInvalida = false;
 		//Esse if verifica se a ilha escolhida de fato existe
 		if(posicaoJogada > 10 || posicaoJogada < 1) {
-			System.out.println("Opa! essa ilha não existe");
-			return tabuleiro;
+			System.out.println("Opa! essa ilha não existe. Escolha um número entre 1 e 10!");
+			jogadaInvalida = true;
+			return jogadaInvalida;
 		}
 		
 		//Esse if verifica se a ilha já foi jogada
 		if(tabuleiro[posicaoJogada - 1] != '-') {
 			System.out.println("Opa! Essa Ilha já foi explorada. Escolha uma nova");
-			return tabuleiro;
+			jogadaInvalida = true;
+			return jogadaInvalida;
 		}
 		
+		return jogadaInvalida;
+	}
+	
+	public static char[] jogadaValida(int posicaoJogada, int posicaoTesouro, char tabuleiro[]) {
 		//Essas condições testam se o usuário acertou ou errou a jogada
 		if((posicaoJogada - 1) == posicaoTesouro) {
 			tabuleiro[posicaoJogada-1] = 'O';
@@ -82,7 +89,7 @@ public class Caça_ao_Tesouro {
 		 *e que o jogador tenha 3 tentativas para descobrir onde está o tesouro
 		*/
 		
-		char tabuleiro[] = new char[10];	
+		char tabuleiro[] = new char[10];
 		Scanner ler = new Scanner(System.in);
 		int posicaoJogada;
 		
@@ -100,7 +107,7 @@ public class Caça_ao_Tesouro {
 		//Instruções
 		System.out.println("INSTRUÇÕES:");
 		System.out.println("Reza a lenda que em uma das 10 ilhas do Arquipélago das Tormentas está escondido o tesouro de Barba Negra.");
-		System.out.println("Todos os piratas que foram em busca dessas riquezas, encontraram o castigo do mar");
+		System.out.println("Todos os piratas que foram em busca dessas riquezas encontraram o castigo do mar");
 		System.out.println("Você é o capitão da tripulação mais corajosa dos sete mares e decide sair à procura do tesouro");
 		System.out.println("Seu objetivo é procurar o tesouro nas ilhas. Mas cuidado!");
 		System.out.println("Seus mantimentos serão suficientes para apenas três tentativas. Boa viagem...");
@@ -109,10 +116,14 @@ public class Caça_ao_Tesouro {
 		
 		do {
 			imprimeTabuleiro(tabuleiro);
-			System.out.printf("Escolha a ilha que deseja explorar: ");
+			System.out.printf("Escolha a ilha que deseja explorar (entre 1 e 10): ");
 			posicaoJogada = ler.nextInt();
-			jogada(posicaoJogada, posicaoTesouro, tabuleiro);
-			vitoria = verificaTabuleiro(tabuleiro);	
+			if(verificaJogadaInvalida(posicaoJogada, tabuleiro) == true) {
+				numero_de_jogadas--;
+			}else {
+				jogadaValida(posicaoJogada, posicaoTesouro, tabuleiro);
+			}
+			vitoria = verificaTabuleiro(tabuleiro);
 			numero_de_jogadas++;
 			System.out.println();
 			avisoMantimentos(numero_de_jogadas, tabuleiro);
