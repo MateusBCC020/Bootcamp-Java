@@ -6,24 +6,29 @@ import java.util.Scanner;
 public class Caça_ao_Tesouro {
 	
 	public static void imprimeTabuleiro(char tabuleiro[]) {
+		//Esse laço percorre o tabuleiro todo imprimindo (entre os colchetes) o conteúdo
+		//De cada elemento do tabuleiro (pode ser um '-', um 'X' ou um 'O').
 		for(int i = 0; i < tabuleiro.length; i++) {
-			System.out.printf("[%c]", tabuleiro[i]);
+			System.out.printf("[%c]    ", tabuleiro[i]);
 		}	
 		System.out.println();
 	}
 	
 	public static char[] jogada(int posicaoJogada, int posicaoTesouro, char tabuleiro[]) {
+		//Esse if verifica se a ilha escolhida de fato existe
 		if(posicaoJogada > 10 || posicaoJogada < 1) {
-			System.out.println("");
+			System.out.println("Opa! essa ilha não existe");
 			return tabuleiro;
 		}
 		
-		if(tabuleiro[posicaoJogada] != '-') {
-			System.out.println("Opa! Essa posição já foi jogada. Escolha uma nova");
+		//Esse if verifica se a ilha já foi jogada
+		if(tabuleiro[posicaoJogada - 1] != '-') {
+			System.out.println("Opa! Essa Ilha já foi explorada. Escolha uma nova");
 			return tabuleiro;
 		}
 		
-		if(posicaoJogada == (posicaoTesouro)+1) {
+		//Essas condições testam se o usuário acertou ou errou a jogada
+		if((posicaoJogada - 1) == posicaoTesouro) {
 			tabuleiro[posicaoJogada-1] = 'O';
 			return tabuleiro;
 		}else {
@@ -32,18 +37,24 @@ public class Caça_ao_Tesouro {
 		}	
 	}
 	
+	//Apenas mostra uma mensagem engraçadinha quando o jogador erra
 	public static void avisoMantimentos(int numeroTentativas, char tabuleiro[]) {
+		//Esse if verifica se a jogada do usuário resultou na vitória, caso sim,
+		//a função retorna (vazio) e volta para a main.
 		if(verificaTabuleiro(tabuleiro) == true) {
 			return;
 		}	
+		//Essas condições são para mostrar mensagens diferentes dependendo do número de tentativas
 		if(numeroTentativas == 1) {
-			System.out.println("Maldição! demos com os burros n'água...");
+			System.out.println("MALDIÇÃO! DEMOS COM OS BURROS N'ÁGUA...");
 		}else if(numeroTentativas == 2) {
-			System.out.println("Cuidado com a próxima escolha, seus mantimentos estão acabando");
+			System.out.println("CUIDADO COM A PRÓXIMA ESCOLHA, SEUS MANTIMENTOS ESTÃO ACABANDO.");
 		}
 	}
 	
 	public static boolean verificaTabuleiro(char tabuleiro[]) {
+		//A variável vitória inicia em false, se houver um caracter 'O' no tabuleiro,
+		//Significa que o usuário venceu, então ela retorna vitoria == true
 		boolean vitoria = false;
 		for (int i = 0; i < tabuleiro.length; i++) {
 			if(tabuleiro[i] == 'O') {
@@ -52,8 +63,6 @@ public class Caça_ao_Tesouro {
 		}
 		return vitoria;
 	}
-	
-	
 	
 	public static void limpa() {
 		for (int i = 0; i < 2; i++) {
@@ -94,7 +103,7 @@ public class Caça_ao_Tesouro {
 		System.out.println("Todos os piratas que foram em busca dessas riquezas, encontraram o castigo do mar");
 		System.out.println("Você é o capitão da tripulação mais corajosa dos sete mares e decide sair à procura do tesouro");
 		System.out.println("Seu objetivo é procurar o tesouro nas ilhas. Mas cuidado!");
-		System.out.println("Seus mantimentos serão suficientes para apenas três tentativas. Escolha sabiamente...");
+		System.out.println("Seus mantimentos serão suficientes para apenas três tentativas. Boa viagem...");
 		
 		limpa();
 		
@@ -117,6 +126,6 @@ public class Caça_ao_Tesouro {
 			imprimeTabuleiro(tabuleiro);
 			System.out.println("Famintas e derrotadas, as almas de sua tripulação agora agonizam eternamente no armário de Davy Jones");
 		}
-		System.out.println("\nFim de jogo!");		
+		System.out.println("\nFIM DE JOGO!");		
 	}
 }
