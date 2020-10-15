@@ -33,6 +33,11 @@ public class Enemy {
 		return dodgeChance;
 	}
 	
+	int atackAtual() {
+		int atualAtack = aleatorio.nextInt(this.atack + 10);
+		return atualAtack;
+	}
+	
 	public void checkEnemy() {
 		System.out.println("Nome: "+this.name);
 		System.out.println("Type: " + this.atackType);

@@ -18,7 +18,7 @@ public class MainCharacter {
 	
 	public MainCharacter() {
 		this.name = charactersNames[aleatorio.nextInt(4)];
-		this.hp = (aleatorio.nextInt(20)+1);
+		this.hp = (aleatorio.nextInt(20)+10);
 		this.atack = (aleatorio.nextInt(5)+1);
 		this.atackType = atacksTypes[aleatorio.nextInt(4)];
 		this.defense = aleatorio.nextInt(10) + 1;		
@@ -35,12 +35,18 @@ public class MainCharacter {
 		return atualAtack;
 	}
 	
-	public void checkEnemy() {
+	public int calculateDodgeChance() {
+		int dodgeChance = aleatorio.nextInt(6);
+		return dodgeChance;
+	}
+	
+	public void checkCharacter() {
 		System.out.println("Nome: "+this.name);
 		System.out.println("Type: " + this.atackType);
 		System.out.println("HP: " + this.hp);
 		System.out.println("Atack: " + this.atack);
 		System.out.println("Defense: " + this.defense);
 		System.out.println("Agility: " + this.agility);
+		System.out.println();
 	}
 }
