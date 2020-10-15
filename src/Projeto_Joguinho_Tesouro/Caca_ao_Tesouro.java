@@ -15,22 +15,21 @@ public class Caca_ao_Tesouro {
 	}
 	
 	public static boolean verificaJogadaInvalida(int posicaoJogada, char tabuleiro[]) {
-		boolean jogadaInvalida = false;
+		boolean jogadaInvalida = false; //Feh, essa jogada é inválida? R: falso
 		//Esse if verifica se a ilha escolhida de fato existe
 		if(posicaoJogada > 10 || posicaoJogada < 1) {
-			System.out.println("Opa! essa ilha não existe. Escolha um número entre 1 e 10!");
+			System.out.println("\nOpa! essa ilha não existe. Escolha um número entre 1 e 10!");
 			jogadaInvalida = true;
 			return jogadaInvalida;
 		}
 		
 		//Esse if verifica se a ilha já foi jogada
 		if(tabuleiro[posicaoJogada - 1] != '-') {
-			System.out.println("Opa! Essa Ilha já foi explorada. Escolha uma nova");
+			System.out.println("\nOpa! Essa Ilha já foi explorada. Escolha uma nova");
 			jogadaInvalida = true;
 			return jogadaInvalida;
-		}
-		
-		return jogadaInvalida;
+		}		
+		return jogadaInvalida;	
 	}
 	
 	public static char[] jogadaValida(int posicaoJogada, int posicaoTesouro, char tabuleiro[]) {
@@ -53,9 +52,9 @@ public class Caca_ao_Tesouro {
 		}	
 		//Essas condições são para mostrar mensagens diferentes dependendo do número de tentativas
 		if(numeroTentativas == 1) {
-			System.out.println("MALDIÇÃO! DEMOS COM OS BURROS N'ÁGUA...");
+			System.out.println("\nMALDIÇÃO! DEMOS COM OS BURROS N'ÁGUA...");
 		}else if(numeroTentativas == 2) {
-			System.out.println("CUIDADO COM A PRÓXIMA ESCOLHA, SEUS MANTIMENTOS ESTÃO ACABANDO.");
+			System.out.println("\nCUIDADO COM A PRÓXIMA ESCOLHA, SEUS MANTIMENTOS ESTÃO ACABANDO.");
 		}
 	}
 	
@@ -78,17 +77,6 @@ public class Caca_ao_Tesouro {
 	}
 	
 	public static void main(String[] args) {
-		
-		//Vetor é uma fileira de variáveis do mesmo tipo
-		//[1][-4][0][2][1]
-		
-		// Ctrl + espaço = Auto complete
-		
-		/*Criar um joguinho de caça ao tesouro em que o tesouro
-		 *Esteja escondido em uma posição aleatória do nosso tabuleiro
-		 *e que o jogador tenha 3 tentativas para descobrir onde está o tesouro
-		*/
-		
 		char tabuleiro[] = new char[10];
 		Scanner ler = new Scanner(System.in);
 		int posicaoJogada;
@@ -104,7 +92,6 @@ public class Caca_ao_Tesouro {
 		int numero_de_jogadas = 0;
 		boolean vitoria = false;
 		
-		//Instruções
 		System.out.println("INSTRUÇÕES:");
 		System.out.println("Reza a lenda que em uma das 10 ilhas do Arquipélago das Tormentas está escondido o tesouro de Barba Negra.");
 		System.out.println("Todos os piratas que foram em busca dessas riquezas encontraram o castigo do mar");
@@ -118,16 +105,17 @@ public class Caca_ao_Tesouro {
 			imprimeTabuleiro(tabuleiro);
 			System.out.printf("Escolha a ilha que deseja explorar (entre 1 e 10): ");
 			posicaoJogada = ler.nextInt();
-			if(verificaJogadaInvalida(posicaoJogada, tabuleiro) == true) {
+			if(verificaJogadaInvalida(posicaoJogada, tabuleiro) == true){
 				numero_de_jogadas--;
 			}else {
 				jogadaValida(posicaoJogada, posicaoTesouro, tabuleiro);
 			}
+			System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
 			vitoria = verificaTabuleiro(tabuleiro);
 			numero_de_jogadas++;
 			System.out.println();
 			avisoMantimentos(numero_de_jogadas, tabuleiro);
-			limpa();
+			//limpa();
 		} while (numero_de_jogadas < 3 && vitoria == false);
 		
 		if(vitoria == true) {
@@ -137,6 +125,6 @@ public class Caca_ao_Tesouro {
 			imprimeTabuleiro(tabuleiro);
 			System.out.println("Famintas e derrotadas, as almas de sua tripulação agora agonizam eternamente no armário de Davy Jones");
 		}
-		System.out.println("\nFIM DE JOGO!");		
+		System.out.println("\nFIM DE JOGO!");	
 	}
 }
