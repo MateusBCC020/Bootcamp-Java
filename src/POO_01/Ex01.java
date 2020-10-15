@@ -10,5 +10,10 @@ public class Ex01 {
 		System.out.println(cliente1.nome);
 		System.out.println(cliente1.formaDePagamento);
 		System.out.println(cliente1.saldo);
+		
+		if(cliente1.verificaPagamento(cliente1.saldo, 10.0) == true)
+			System.out.println("Consegue pagar");
+		else
+			System.out.println("Não consegue pagar");
 	}
 }

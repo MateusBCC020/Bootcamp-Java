@@ -13,6 +13,13 @@ public class Cliente {
 		this.saldo = saldo;
 	}
 	
+	public boolean verificaPagamento(double saldo, double preco) {
+		if(saldo >= preco)
+			return true;
+		else
+			return false;
+	}
+	
 	public void payWay(int num) {
 		if(num == 1)
 			formaDePagamento = "Dinheiro";
