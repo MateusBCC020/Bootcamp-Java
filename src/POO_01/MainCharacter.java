@@ -11,7 +11,7 @@ public class MainCharacter {
 	public int defense;
 	public int agility;
 	public int accuracy;
-	public String charactersNames[] = {"Eliwood", "Lyndis", "Hector", "Matthew"};
+	public String charactersNames[] = {"Eliwood", "Lyndis", "Hector", "Erika"};
 	
 	
 	Random aleatorio = new Random();

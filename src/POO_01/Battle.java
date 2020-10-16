@@ -28,7 +28,7 @@ public class Battle {
 	
 	void startBattle() {
 		System.out.println(inimigo.name+" apareceu!");
-		while(inimigo.hp > 0 && this.endBattle == false) {
+		while(inimigo.hp > 0 && this.endBattle == false && this.lose == false) {
 			battleStatus();
 			round();
 		}
@@ -63,13 +63,12 @@ public class Battle {
 				personagem.hp = personagem.hp - (valorAtaqueAtual - personagem.defense);
 				System.out.println("O dano recebido foi: " + (valorAtaqueAtual - personagem.defense));
 				System.out.println();
+				if(personagem.hp <= 0) {
+					this.lose = true;
+				}
+				this.turns++;
 			}
 		}
-		
-		if(personagem.hp <= 0) {
-			this.lose = true;
-		}
-		this.turns++;
 	}
 	
 	void mainCharacterRound() {
