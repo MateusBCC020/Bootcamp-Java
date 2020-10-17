@@ -5,6 +5,5 @@ public class RPG_Main {
 		Battle batalha = new Battle();
 		batalha.startBattle();
 		
-		
 	}
 }
