@@ -31,7 +31,7 @@ public class MainCharacter {
 	}
 	
 	int atackAtual() {
-		int atualAtack = aleatorio.nextInt(this.atack + 10);
+		int atualAtack = aleatorio.nextInt(10) + this.atack;
 		return atualAtack;
 	}
 	
