@@ -5,7 +5,7 @@ import java.util.Random;
 public class Estoque {
 	private String produto;
 	private int quantidade;
-	private String nomes[] = {"Arroz", "Feijão", "Farinha", "Óleo", "Leite"};
+	private String nomes[] = {"Arroz", "Feijão", "Farinha", "Óleo", "Leite", "Açucar", "Queijo"};
 	
 	
 	

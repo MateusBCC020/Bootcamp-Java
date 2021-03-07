@@ -33,7 +33,9 @@ public class Main_Loja {
 			escolha = ler.nextInt();
 			if(escolha == 1) {
 				System.out.println();
-				estoque.forEach((Estoque value) -> System.out.print(value.getProduto()+"\n"));
+				System.out.println("PRODUTO\t\tQUANTIDADE");
+				System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------");
+				estoque.forEach((Estoque value) -> System.out.print(value.getProduto()+"\t\t"+value.getQuantidade()+"\n"));
 				System.out.println();
 			}else if(escolha == 2) {
 				System.out.printf("Nome do produto: ");
