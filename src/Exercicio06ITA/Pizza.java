@@ -10,11 +10,31 @@ public class Pizza {
 	public List<String> listaIngredientes = new ArrayList<>();
 	public double preco;
 	
+	public static void zerarTotalIngredientes() {
+		ingredientesTotal = 0;
+	}
+	
 	public void adicionarIngrediente(String ingrediente) {
 		listaIngredientes.add(ingrediente);
 		contabilizaIngrediente();
 	}
 	
+	public static int getIngredientesTotal() {
+		return ingredientesTotal;
+	}
+
+	public static void setIngredientesTotal(int ingredientesTotal) {
+		Pizza.ingredientesTotal = ingredientesTotal;
+	}
+
+	public List<String> getListaIngredientes() {
+		return listaIngredientes;
+	}
+
+	public void setListaIngredientes(List<String> listaIngredientes) {
+		this.listaIngredientes = listaIngredientes;
+	}
+
 	public static void contabilizaIngrediente() {
 		ingredientesTotal++;
 	}

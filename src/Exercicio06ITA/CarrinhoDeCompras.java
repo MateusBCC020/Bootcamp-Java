@@ -10,12 +10,20 @@ public class CarrinhoDeCompras {
 		if(pizza.listaIngredientes.size() <= 0) return;
 		pizzasNoCarrinho.add(pizza);
 	}
-	
+
 	public double retornaValorTotal() {
 		double valorTotal = 0;
 		for(Pizza elemento : pizzasNoCarrinho) {
 			valorTotal += elemento.getPreco();
 		}
 		return valorTotal;
+	}
+	
+	public List<Pizza> getPizzasNoCarrinho() {
+		return pizzasNoCarrinho;
+	}
+
+	public void setPizzasNoCarrinho(List<Pizza> pizzasNoCarrinho) {
+		this.pizzasNoCarrinho = pizzasNoCarrinho;
 	}
 }

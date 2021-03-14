@@ -6,7 +6,7 @@ public class principal {
 
 		carro.nome = "Ferrari";
 		
-		carro.acelerar(carro.acelerar(10));
+		carro.acelerar();
 		carro.imprimir();
 		
 	}	

@@ -5,8 +5,8 @@ public class Carro {
 	int velocidade;
 	String nome;
 	
-	int acelerar(int velocidade) {
-		this.velocidade += velocidade;
+	int acelerar() {
+		this.velocidade += potencia;
 		return this.velocidade;
 	}
 	
