@@ -4,7 +4,7 @@ package Exercicio03ITA;
 import java.text.DecimalFormat;
 
 public class Principal {
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		Paciente paciente1 = new Paciente(70, 1.84);
 		Paciente paciente2 = new Paciente(80, 1.84);
 		Paciente paciente3 = new Paciente(90, 1.84);

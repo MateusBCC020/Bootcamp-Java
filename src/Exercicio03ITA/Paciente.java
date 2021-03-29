@@ -29,7 +29,7 @@ public class Paciente {
 			return "Sobrepeso = IMC entre 25 e 29,99 kg/m²";
 		}else if(calcularIMC() > 30 && calcularIMC() <= 34.99) {
 			return "Obesidade grau I = IMC entre 30 e 39,99 kg/m²";
-		}else if(calcularIMC() > 35 && calcularIMC() <= 16.99) {
+		}else if(calcularIMC() > 35 && calcularIMC() <= 39.99) {
 			return "Obesidade grau II = IMC entre 35 e 39,99 kg/m²";
 		}else {
 			return "Obesidade grau III (obesidade mórbida) = IMC igual ou maior que 40 kg/m²";
